@@ -8,7 +8,7 @@ const btnScissorsEl = document.getElementById("btn-scissors");
 
 const humanChoiceEl = document.getElementById("human-choice");
 const computerChoiceEl = document.getElementById("computer-choice");
-const roundResultEl = document.getElementById("round-result");
+const resultEl = document.getElementById("result");
 
 const btnResetEl = document.getElementById("btn-reset");
 
@@ -44,7 +44,7 @@ function calculateWinner(humanChoice, computerChoice) {
 }
 
 function renderScoreboard() {
-    roundEl.innerHTML = `Round: <b>${round + 1}/5</b>`;
+    roundEl.innerHTML = `Round: <b>${round}/5</b>`;
     humanScoreEl.innerHTML = `You: <b>${humanScore}</b>`;
     computerScoreEl.innerHTML = `Computer: <b>${computerScore}</b>`;
 }
@@ -52,7 +52,24 @@ function renderScoreboard() {
 function renderGameStatus(humanChoice, computerChoice, roundResult) {
     humanChoiceEl.innerHTML = `You chose: <b>${humanChoice}</b>`;
     computerChoiceEl.innerHTML = `Computer chose: <b>${computerChoice}</b>`;
-    roundResultEl.textContent = roundResult;
+    resultEl.style.color = "black";
+    resultEl.innerHTML = roundResult;
+}
+
+function gameOver() {
+    toggleChoiceButtons(false);
+    if (humanScore > computerScore) {
+        confetti();
+        resultEl.style.color = "green";
+        resultEl.innerHTML = `<b>You won the game!</b>`;
+    } else if (humanScore < computerScore) {
+        resultEl.style.color = "red";
+        resultEl.innerHTML = `<b>You lost the game!</b>`;
+    } else {
+        resultEl.style.color = "gray";
+        resultEl.innerHTML = `<b>You tied the game!</b>`;
+    }
+
 }
 
 function playRound(humanChoice) {
@@ -64,7 +81,7 @@ function playRound(humanChoice) {
     round++;
     renderScoreboard();
 
-    if (round >= 4) toggleChoiceButtons(false);
+    if (round >= 5) gameOver();
 }
 
 function resetGame() {

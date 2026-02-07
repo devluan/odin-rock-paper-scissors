@@ -10,7 +10,7 @@
     <div class="game-container">
         <h1>Rock Paper Scissors</h1>
         <div class="scoreboard">
-            <span id="round">Round: <b>1/5</b></span>
+            <span id="round">Round: <b>0/5</b></span>
             <span id="human-score">You: <b>0</b></span>
             <span id="computer-score">Computer: <b>0</b></span>
         </div>
@@ -24,12 +24,13 @@
         <div class="game-status">
             <span id="human-choice">You chose: <b>-</b></span>
             <span id="computer-choice">Computer chose: <b>-</b></span>
-            <span id="round-result" class="round-result">Make your move!</span>
+            <span id="result" class="result">Make your move!</span>
         </div>
 
         <button id="btn-reset" class="btn btn-reset">Reset Game</button>
     </div>
-    
+
     <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>
